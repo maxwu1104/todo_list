@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const { engine } = require('express-handlebars')
+const bodyParser = require('body-parser')
 const Todo = require('./models/todo')
 
 const app = express()
@@ -30,6 +31,9 @@ db.once('open', () => {
   console.log('mongodb connected')
 })
 
+//always through here
+app.use(bodyParser.urlencoded({ extended: true }))
+
 //setting router
 app.get('/', (req, res) => {
   // get all todo data
@@ -37,6 +41,20 @@ app.get('/', (req, res) => {
     .lean()
     .then((todos) => res.render('index', { todos }))
     .catch((error) => console.error(error))
+})
+
+app.get('/todos/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/todos', (req, res) => {
+  const name = req.body.name
+  const todo = new Todo({ name })
+
+  return todo
+    .save()
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
 })
 
 //start and listen the server
