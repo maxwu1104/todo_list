@@ -1,0 +1,11 @@
+<form action='/todos/{{todo._id}}/edit' method='POST'>
+  <input
+    type='text'
+    name='name'
+    id='name'
+    placeholder='name'
+    value='{{todo.name}}'
+  />
+  <a href='/'>back</a>
+  <button type='submit'>Save</button>
+</form>
