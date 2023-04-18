@@ -1,6 +1,13 @@
 <p>
-  <input type="checkbox" name="isDone" id="isDone" {{#if todo.isDone}} checked {{/if}} disabled>
+  <input type='checkbox' name='isDone' id='isDone' {{#if todo.isDone}} checked {{/if}} disabled />
   {{todo.name}}
 </p>
 <a href='/todos/{{todo._id}}/edit'>edit</a>
 <a href='/'>back</a>
+<form
+  action='/todos/{{this._id}}?_method=delete'
+  method='POST'
+  style='display:inline;'
+>
+  <button type='submit'>delete</button>
+</form>
