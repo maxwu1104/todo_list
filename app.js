@@ -1,5 +1,8 @@
-// require external package
+// require express framework
 const express = require('express')
+const app = express()
+
+// require middleware in this project
 const { engine } = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -8,21 +11,19 @@ const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
 
-const app = express()
-
-////setting view engine with handlebars
+// setting view engine with handlebars
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.set('views', './views')
 
-//always through here
+// always through here
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-//setting router
+// setting router
 app.use(routes)
 
-//start and listen the server
+// start and listen the server
 app.listen(3000, () => {
-  console.log(`App is running on http://localhost:3000`)
+  console.log('App is running on http://localhost:3000')
 })
