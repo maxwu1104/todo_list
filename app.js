@@ -10,6 +10,7 @@ const session = require('express-session')
 
 // require project internal files
 const routes = require('./routes')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 // setting view engine with handlebars
@@ -27,6 +28,9 @@ app.use(
 )
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+// user authentication function
+usePassport(app)
 
 // setting router
 app.use(routes)
