@@ -11,8 +11,13 @@
 <body class="bg-light">
   <header>
     <nav class="navbar navbar-dark bg-primary justify-content-between px-3">
-      <a href="/" class="navbar-brand">Todo List</a>
-      <a href="/todos/new" class="btn btn-outline-light">Create</a>
+      <a href="/" class="navbar-brand">
+        {{#if isAuthenticated}}{{user.name}}'s{{/if}} Todo List</a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-light" style="width:100px">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-light" style="width:100px">Login</a>
+      {{/if}}
     </nav>
   </header>
 
