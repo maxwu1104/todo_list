@@ -13,6 +13,4 @@ node_modules
 *.log
 *.gz
 .eslintrc.js
-
-# dotenv
 .env

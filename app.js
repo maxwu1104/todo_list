@@ -8,6 +8,9 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 // require project internal files
 const routes = require('./routes')
@@ -22,7 +25,7 @@ app.set('views', './views')
 // always through here
 app.use(
   session({
-    secret: 'ThisIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
   })
