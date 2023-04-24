@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
+const path = require('path')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -20,7 +21,7 @@ require('./config/mongoose')
 // setting view engine with handlebars
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
-app.set('views', './views')
+app.set('views', path.join(__dirname, 'views'))
 
 // always through here
 app.use(
